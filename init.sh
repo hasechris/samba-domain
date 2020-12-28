@@ -67,7 +67,7 @@ appSetup () {
 			idmap config ${URDOMAIN}: backend = ad\
 			" /etc/samba/smb.conf
 		if [[ $DNSFORWARDER != "NONE" ]]; then
-			sed -i "/\[global\]/a \
+			sed -i "/\[netlogon\]/i \
 				\\\tdns forwarder = ${DNSFORWARDER}\
 				" /etc/samba/smb.conf
 		fi
