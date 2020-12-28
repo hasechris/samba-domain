@@ -32,7 +32,7 @@ docker build -t samba-domain .
 Or just use the HUB:
 
 ```
-docker pull nowsci/samba-domain
+docker pull torkalis/samba-domain
 ```
 
 ## Setting things up for the container
@@ -183,7 +183,7 @@ done;
 ```
 
 # Examples with docker run
-Keep in mind, for all examples replace `nowsci/samba-domain` with `samba-domain` if you build your own from GitHub.
+Keep in mind, for all examples replace `torkalis/samba-domain` with `samba-domain` if you build your own from GitHub.
 
 Start a new domain, and forward non-resolvable queries to the main DNS server
 * Local site is `192.168.3.0`
@@ -193,7 +193,7 @@ Start a new domain, and forward non-resolvable queries to the main DNS server
 ```
 docker run -t -i \
 	-e "DOMAIN=CORP.EXAMPLE.COM" \
-	-e "DOMAINPASS=ThisIsMyAdminPassword" \
+	-e "DOMAINPASS=Passw0rd#" \
 	-e "DNSFORWARDER=192.168.3.1" \
 	-e "HOSTIP=192.168.3.222" \
 	-p 192.168.3.222:53:53 \
@@ -221,7 +221,7 @@ docker run -t -i \
 	-h localdc \
 	--name samba \
 	--privileged \
-	nowsci/samba-domain
+	torkalis/samba-domain
 ```
 
 Join an existing domain, and forward non-resolvable queries to the main DNS server
@@ -233,7 +233,7 @@ Join an existing domain, and forward non-resolvable queries to the main DNS serv
 ```
 docker run -t -i \
 	-e "DOMAIN=CORP.EXAMPLE.COM" \
-	-e "DOMAINPASS=ThisIsMyAdminPassword" \
+	-e "DOMAINPASS=Passw0rd#" \
 	-e "JOIN=true" \
 	-e "DNSFORWARDER=192.168.3.1" \
 	-e "HOSTIP=192.168.3.222" \
@@ -263,7 +263,7 @@ docker run -t -i \
 	-h localdc \
 	--name samba \
 	--privileged \
-	nowsci/samba-domain
+	torkalis/samba-domain
 ```
 
 Join an existing domain, forward DNS, remove security features, and connect to a remote site via openvpn
@@ -277,7 +277,7 @@ Join an existing domain, forward DNS, remove security features, and connect to a
 ```
 docker run -t -i \
 	-e "DOMAIN=CORP.EXAMPLE.COM" \
-	-e "DOMAINPASS=ThisIsMyAdminPassword" \
+	-e "DOMAINPASS=Passw0rd#" \
 	-e "JOIN=true" \
 	-e "DNSFORWARDER=192.168.3.1" \
 	-e "MULTISITE=true" \
@@ -316,7 +316,7 @@ docker run -t -i \
 	--name samba \
 	--privileged \
 	--cap-add=NET_ADMIN --device /dev/net/tun \
-	nowsci/samba-domain
+	torkalis/samba-domain
 ```
 
 
@@ -341,7 +341,7 @@ services:
 # ----------- samba begin ----------- #
 
   samba:
-    image: nowsci/samba-domain
+    image: torkalis/samba-domain
     container_name: samba
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -349,7 +349,7 @@ services:
       - /data/docker/containers/samba/config/samba:/etc/samba/external
     environment:
       - DOMAIN=CORP.EXAMPLE.COM
-      - DOMAINPASS=ThisIsMyAdminPassword
+      - DOMAINPASS=Passw0rd#
       - DNSFORWARDER=192.168.3.1
       - HOSTIP=192.168.3.222
     networks:
@@ -406,7 +406,7 @@ services:
 # ----------- samba begin ----------- #
 
   samba:
-    image: nowsci/samba-domain
+    image: torkalis/samba-domain
     container_name: samba
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -414,7 +414,7 @@ services:
       - /data/docker/containers/samba/config/samba:/etc/samba/external
     environment:
       - DOMAIN=CORP.EXAMPLE.COM
-      - DOMAINPASS=ThisIsMyAdminPassword
+      - DOMAINPASS=Passw0rd#
       - JOIN=true
       - DNSFORWARDER=192.168.3.1
       - HOSTIP=192.168.3.222
@@ -475,7 +475,7 @@ services:
 # ----------- samba begin ----------- #
 
   samba:
-    image: nowsci/samba-domain
+    image: torkalis/samba-domain
     container_name: samba
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -485,7 +485,7 @@ services:
       - /data/docker/containers/samba/config/openvpn/credentials:/credentials
     environment:
       - DOMAIN=CORP.EXAMPLE.COM
-      - DOMAINPASS=ThisIsMyAdminPassword
+      - DOMAINPASS=Passw0rd#
       - JOIN=true
       - DNSFORWARDER=192.168.3.1
       - MULTISITE=true

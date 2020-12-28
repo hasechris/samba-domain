@@ -1,0 +1,26 @@
+FROM alpine:3.11 AS qemu
+RUN apk --update add --no-cache curl
+RUN cd /tmp && \
+curl -L https://github.com/balena-io/qemu/releases/download/v3.0.0%2Bresin/qemu-3.0.0+resin-arm.tar.gz | tar zxvf - -C . && mv qemu-3.0.0+resin-arm/qemu-arm-static .
+
+FROM arm32v6/ubuntu:bionic
+COPY --from=qemu /tmp/qemu-arm-static /usr/bin/
+
+MAINTAINER Torkalis
+
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get update && apt-get upgrade -y
+
+# Install all apps
+RUN apt-get install -y pkg-config
+RUN apt-get install -y attr acl samba smbclient ldap-utils winbind libnss-winbind libpam-winbind krb5-user krb5-kdc supervisor
+# Install OpenVPN
+RUN apt-get install -y openvpn
+# Install Diagnostic tools
+RUN apt-get install -y nano dnsutils net-tools inetutils-ping
+
+# Set up script and run
+ADD init.sh /init.sh
+RUN chmod 755 /init.sh
+CMD /init.sh setup
