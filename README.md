@@ -1,6 +1,6 @@
 # Samba Active Directory Domain Controller for Docker
 
-A well documented, tried and tested Samba Active Directory Domain Controller that works with the standard Windows management tools; built from scratch using internal DNS and kerberos and not based on existing containers. Forked by https://github.com/Fmstrat/samba-domain for my personal purpose and using ubuntu:focal
+A well documented, tried and tested Samba Active Directory Domain Controller that works with the standard Windows management tools; built from scratch using internal DNS and kerberos and not based on existing containers. Forked by https://github.com/Fmstrat/samba-domain for my personal purpose and using ubuntu:bionic
 
 ## Environment variables for quick start
 * `DOMAIN` defaults to `CORP.EXAMPLE.COM` and should be set to your domain
