@@ -1,4 +1,4 @@
-# This is a GitLab CI configuration to build the project as a docker image
+# This is a GitLab CI configuration to build the project as a docker image
 # The file is generic enough to be dropped in a project containing a working Dockerfile
 # Author: Florent CHAUVEAU <florent.chauveau@gmail.com>
 # Mentioned here: https://blog.callr.tech/building-docker-images-with-gitlab-ci-best-practices/
